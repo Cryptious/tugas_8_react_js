@@ -8,16 +8,7 @@ class App extends Component {
     this.state ={
       show: false
     }
-    this.handleClose = this.handleClose.bind(this);
-    this.handleShow = this.handleShow.bind(this);
 
-  }
-  handleClose(){
-    this.setState({show: false});
-  }
-
-  handleShow(){
-    this.setState({show: true})
   }
 
   render(){
@@ -139,7 +130,7 @@ class App extends Component {
               <Form.Group controlId="formBasicChecbox">
                 <Form.Check type="checkbox" label="Terms & Conditions" />
               </Form.Group>
-              <Button onClick={this.handleShow} variant="primary">
+              <Button onClick={() => this.setState({ show: !this.state.show})} variant="primary">
                 Login
               </Button>
             </Form>
@@ -149,16 +140,16 @@ class App extends Component {
         </Row>
         <br />
         <Row>
-        <Modal show={this.state.show} onHide={this.handleClose}>
+        <Modal show={this.state.show} onHide={() => this.setState({ show: !this.state.show})}>
           <Modal.Header closeButton>
             <Modal.Title>Modal heading</Modal.Title>
           </Modal.Header>
           <Modal.Body>Anda Berhasil LOGIN</Modal.Body>
           <Modal.Footer>
-            <Button onClick={this.handleClose} variant="secondary" >
+            <Button onClick={() => this.setState({ show: !this.state.show})} variant="secondary" >
               Close
             </Button>
-            <Button onClick={this.handleClose} variant="primary">
+            <Button onClick={() => this.setState({ show: !this.state.show})} variant="primary">
               Save Username & Password
             </Button>
           </Modal.Footer>
